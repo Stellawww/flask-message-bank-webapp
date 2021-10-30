@@ -32,10 +32,10 @@ def insert_message(request):
 def random_messages(n):
 	db = get_message_db()
 	cursor = db.cursor()
-	random_messages = cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT"\
+	randoms = cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT"\
 					 + str(n)).fetchall()
 
-	print(random_messages)
+	print(randoms)
 	db.close()  
 
 
@@ -45,6 +45,7 @@ def main():
 
 @app.route("/submit/", methods = ["POST", "GET"])
 def submit():
+
 	# the case of transmitting data
 	if request.method == "GET":
 		return render_template("submit.html")
@@ -59,7 +60,8 @@ def submit():
 
 @app.route("/view/")
 def view():
-	return render_template("view.html", random_messages = random_messages(5))
+	# call random_messages() and pass the messages to the "view" html template
+	return render_template("view.html", randoms = random_messages(5))
 
 
 

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Let's See What Other People Say!{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if randoms %}
+    {% for m in randoms %}
+      <b>{{m[1]}}<b>
+      <br>
+      <i>{{m[2]}}<i>
+      <br>
+    {% end for %}
+  {% endif %}
+{% endblock %}
