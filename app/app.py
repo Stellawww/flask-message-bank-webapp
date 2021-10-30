@@ -23,20 +23,20 @@ def insert_message(request):
 		cursor = db.cursor()
 		cursor.execute("SELECT COUNT(*) FROM messages")
 		row = cursor.fetchone() # get the current number of rows
-		cursor.execute("INSERT INTO messages(id, handle, message) VALUES(\
-						"str(row[0] + 1)" + "handle" + "message")")
+		cursor.execute("INSERT INTO messages(id, handle, message)\
+						VALUES(" + str(row[0] + 1) + ", \""+ handle + "\", \"" + message + "\")")
 
 		db.commit()
 		db.close()
 
 def random_messages(n):
+	
 	db = get_message_db()
 	cursor = db.cursor()
-	randoms = cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT"\
-					 + str(n)).fetchall()
-
-	print(randoms)
-	db.close()  
+	cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT " + str(n))
+	random_messages = cursor.fetchall()
+	db.close()
+	return random_messages
 
 
 @app.route("/")
@@ -60,8 +60,8 @@ def submit():
 
 @app.route("/view/")
 def view():
-	# call random_messages() and pass the messages to the "view" html template
-	return render_template("view.html", randoms = random_messages(5))
+	# call random_messages() and pass the random messages to the "view" html template
+	return render_template("view.html", random_messages = random_messages(5))
 
 
 

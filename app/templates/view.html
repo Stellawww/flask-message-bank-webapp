@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block content %}
-  {% if randoms %}
-    {% for m in randoms %}
-      <b>{{m[1]}}<b>
+  {% if random_messages %}
+    {% for m in random_messages %}
+      "<b>{{m[2]}}</b>"
       <br>
-      <i>{{m[2]}}<i>
+      - <i>{{m[1]}}</i>
       <br>
-    {% end for %}
+      <br>
+    {% endfor %}
   {% endif %}
 {% endblock %}
