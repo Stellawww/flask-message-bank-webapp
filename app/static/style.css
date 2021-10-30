@@ -1,0 +1,22 @@
+html {
+    font-family: "Lucida Console", "Courier New", monospace;
+    background: AntiqueWhite;
+    padding: 1rem;
+}
+
+body {
+    background-color: #FFB6AE;
+}
+
+h1 {
+    color: Tomato;
+    font-family: papyrus, fantasy;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+a {
+    color: CornflowerBlue;
+    text-decoration: none;
+}
+
